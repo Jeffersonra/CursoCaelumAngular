@@ -11,6 +11,7 @@ import { ModuloRoteamento } from './app.routes';
 import { ErroComponent } from './erro/erro.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MensagemComponent } from './mensagem/mensagem.component';
+import { FiltroPorTitulo } from './listagem/filtroPorTitulo.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MensagemComponent } from './mensagem/mensagem.component';
     ListagemComponent,
     CadastradoComponent,
     ErroComponent,
-    MensagemComponent
+    MensagemComponent,
+    FiltroPorTitulo
   ],
   imports: [
     BrowserModule,

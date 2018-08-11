@@ -42,8 +42,8 @@
       </form>
       <aside class="col-md-5">
         <h2>Preview</h2>
-        <caelumpic-card [foto]="foto" class="col-md-4 mb-4" *ngIf="foto.url"> 
-             <foto-root [url]="foto.url" class="foto"></foto-root>
+        <caelumpic-card [foto]="foto" class="col-md-4 mb-4" *ngIf="url.value"> 
+             <foto-root [url]="url.value" class="foto"></foto-root>
          </caelumpic-card>
       </aside>
 

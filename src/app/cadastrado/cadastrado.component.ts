@@ -41,7 +41,11 @@ export class CadastradoComponent implements OnInit {
     let fotoId = this.rotaAtivada.snapshot.params.fotoId
 
     if(fotoId){
-      this.servico.pesquisar(fotoId).subscribe(fotoApi => this.foto = fotoApi)
+      this.servico.pesquisar(fotoId)
+                  .subscribe(fotoApi =>{
+                                        this.foto = fotoApi
+                                        this.formCadastro.patchValue(fotoApi)
+      })
     }
    }
 
@@ -53,7 +57,14 @@ export class CadastradoComponent implements OnInit {
     return this.formCadastro.get('url');
   }
 
+  get descricao(){
+    return this.formCadastro.get('descricao');
+  }
+
   salvar(){
+
+    this.foto = {...this.foto, ...this.formCadastro.value} 
+
     if(this.foto._id){
       this.servico.atualizar(this.foto).subscribe(
                                        () => {

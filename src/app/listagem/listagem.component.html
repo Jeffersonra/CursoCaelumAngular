@@ -7,13 +7,16 @@
 
     <div class="row">
       <div class="col-12 mb-4">
-        <a routerLink="/cadastro" class="btn btn-primary">Nova Foto</a>
+        <span class="input-group-prepend">
+            <a routerLink="/cadastro" class="btn btn-primary">Nova Foto</a>
+            <input (keyup)="true"  #inputBusca type="search" class="form-control">
+        </span>
       </div>
     </div>
   
    <div class="row">
-     <caelumpic-card *ngFor="let foto of listafotos" [foto]="foto" class="col-md-4 mb-4"  > 
-        <a [routerLink]="['/editar', foto._id]" class="foto">
+     <caelumpic-card *ngFor="let foto of listafotos | filtroPorTitulo:inputBusca.value" [foto]="foto" class="col-md-4 mb-4"  > 
+        <a [routerLink]="['/editar', foto._id]" class="foto" [title]="foto.titulo | uppercase">
          <foto-root [url]="foto.url" [titulo] = "foto.titulo"></foto-root>
         </a>
          <button (click)="Apagar(foto)" class="btn btn-danger">Apagar</button>

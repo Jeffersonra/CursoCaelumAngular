@@ -9,7 +9,7 @@ import { Foto } from '../foto/foto.model';
 })
 export class ListagemComponent implements OnInit {
 
-  listafotos:Foto[];
+  listafotos:Foto[] = [];
 
   constructor(private servico: FotoService){
     console.log('Construtor do para buscar dados do serviço');
