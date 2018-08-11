@@ -4,6 +4,7 @@ import { FotoService } from '../foto/foto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MensagemComponent } from '../mensagem/mensagem.component';
 import { Mensagem } from '../mensagem/mensagem';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'caelumpic-cadastrado',
@@ -15,9 +16,24 @@ export class CadastradoComponent implements OnInit {
   foto = new Foto();
   mensagem= new Mensagem();
 
-  constructor(private servico: FotoService, private rotaAtivada:ActivatedRoute, private roteador: Router){}
+  formCadastro:FormGroup;
+
+  constructor(private servico: FotoService
+            ,private rotaAtivada:ActivatedRoute
+            ,private roteador: Router
+            ,private formBuilder:FormBuilder){}
 
   ngOnInit() { 
+
+    this.formCadastro = this.formBuilder.group({
+      titulo:['', Validators.compose([
+        Validators.required,
+        Validators.minLength(5)
+        ])],
+      url: ['', Validators.required],
+      descricao:''
+    })
+
     console.log(this.rotaAtivada);
 
     //this.rotaAtivada.params.subscribe(parametros => console.log(parametros.fotoId))
@@ -28,6 +44,14 @@ export class CadastradoComponent implements OnInit {
       this.servico.pesquisar(fotoId).subscribe(fotoApi => this.foto = fotoApi)
     }
    }
+
+   get titulo(){
+     return this.formCadastro.get('titulo');
+   }
+
+   get url(){
+    return this.formCadastro.get('url');
+  }
 
   salvar(){
     if(this.foto._id){
@@ -56,6 +80,7 @@ export class CadastradoComponent implements OnInit {
               this.mensagem.texto = `${this.foto.titulo} Cadastrado com Sucesso!`
               this.mensagem.tipo = 'success'
               this.foto = new Foto()
+              this.formCadastro.reset()
             }
             ,() => {this.mensagem.texto = `Erro ao Cadastrar!`, this.mensagem.tipo = 'danger'}
           )
