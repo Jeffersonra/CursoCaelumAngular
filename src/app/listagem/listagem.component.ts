@@ -30,12 +30,14 @@ export class ListagemComponent implements OnInit {
                 .subscribe(
                   () => {console.log("Apagou",fotoApagada)
 
-                  this.listafotos = this.listafotos
-                                        .filter(foto => {
-                                          if(foto != fotoApagada){
-                                             return foto 
-                                          }
-                                        })
+                  // this.listafotos = this.listafotos
+                  //                       .filter(foto => {
+                  //                         if(foto != fotoApagada){
+                  //                            return foto 
+                  //                         }
+                  //                       })
+
+                  this.listafotos = this.listafotos.filter(foto => foto != fotoApagada)
                 },
                 erro => console.log("Deu Ruim: ", erro)
                 )

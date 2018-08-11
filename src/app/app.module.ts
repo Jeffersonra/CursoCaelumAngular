@@ -10,6 +10,7 @@ import { CadastradoComponent } from './cadastrado/cadastrado.component';
 import { ModuloRoteamento } from './app.routes';
 import { ErroComponent } from './erro/erro.component';
 import { FormsModule } from "@angular/forms";
+import { MensagemComponent } from './mensagem/mensagem.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from "@angular/forms";
     CardComponent,
     ListagemComponent,
     CadastradoComponent,
-    ErroComponent
+    ErroComponent,
+    MensagemComponent
   ],
   imports: [
     BrowserModule,

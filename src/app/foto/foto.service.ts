@@ -25,7 +25,11 @@ export class FotoService{
         return this.conexaoApi.delete(this.url+foto._id)
     }
     
-    atualizar(){}
-
-    pesquisar(){}
+    pesquisar(fotoId:string): Observable<Foto>{
+        return this.conexaoApi.get<Foto>(this.url+fotoId)
+    }
+    
+    atualizar(foto:Foto):Observable<Object>{
+        return this.conexaoApi.put(this.url+foto._id,foto)
+    }
 }
